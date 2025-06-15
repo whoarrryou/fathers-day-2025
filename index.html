@@ -209,7 +209,38 @@
         <p class="text-sm text-amber-800/70 mt-2">Father's Day 2025</p>
     </footer>
 
+    <!-- Background Music -->
+    <audio id="bgMusic" loop muted>
+        <source src="light-instrumental-melody-313329.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Play Button -->
+    <button id="playMusic" class="fixed bottom-4 right-4 bg-amber-500 hover:bg-amber-600 text-white rounded-full p-3 shadow-lg transition-all duration-300 z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+    </button>
+
     <script>
+        // Audio handling
+        const bgMusic = document.getElementById('bgMusic');
+        const playButton = document.getElementById('playMusic');
+        let isPlaying = false;
+
+        playButton.addEventListener('click', () => {
+            if (!isPlaying) {
+                bgMusic.muted = false;
+                bgMusic.play();
+                isPlaying = true;
+                playButton.classList.add('bg-amber-600');
+            } else {
+                bgMusic.pause();
+                isPlaying = false;
+                playButton.classList.remove('bg-amber-600');
+            }
+        });
+
         // Three.js Background Animation
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
